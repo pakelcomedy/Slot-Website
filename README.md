@@ -1,3 +1,4 @@
+```
 slot-game/
 ├── index.html
 ├── assets/
@@ -16,3 +17,4 @@ slot-game/
 │       └── js/
 │           └── bootstrap.bundle.min.js
 └── README.md
+```
