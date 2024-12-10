@@ -1,10 +1,6 @@
 const symbols = [
-    { name: "🍒", value: 5 },
-    { name: "🍋", value: 10 },
-    { name: "🍉", value: 15 },
-    { name: "🍇", value: 20 }
-    // { name: "🍊", value: 25 },
-    // { name: "🍍", value: 30 }
+    { name: "🍒", value: 200 },
+    { name: "🍋", value: 300 }
 ];
 
 // Paylines untuk 6 kolom dan 5 tingkat
@@ -92,14 +88,13 @@ const paylines = [
     [1, 3, 0, 4, 3, 1]  // Pola diagonal zigzag
 ];
 
-
 const columns = document.querySelectorAll(".slot-items");
 const startButton = document.getElementById("start-button");
 const balanceDisplay = document.getElementById("balance");
 
-let currentItems = []; // Array untuk menyimpan item yang sudah ada di setiap kolom
-let balance = 1000; // Saldo awal pemain
-const betAmount = 50; // Jumlah taruhan per putaran
+let currentItems = []; // Array to store the items in each column
+let balance = 1000; // Initial player balance
+const betAmount = 50; // Bet amount per spin
 
 function generateRandomSymbols() {
     return Array.from({ length: 5 }, () => symbols[Math.floor(Math.random() * symbols.length)]);
@@ -116,9 +111,9 @@ function fillColumn(column, items) {
 }
 
 function rotateColumn(column, items) {
-    // Geser semua item ke atas
-    items.push(items.shift()); // Menggeser elemen pertama ke akhir array
-    fillColumn(column, items); // Isi kolom dengan array yang sudah digeser
+    // Shift all items up
+    items.push(items.shift()); // Move the first element to the end
+    fillColumn(column, items); // Refill the column with shifted items
 }
 
 function animateSlots() {
@@ -127,85 +122,90 @@ function animateSlots() {
         return;
     }
 
-    updateBalance(-betAmount); // Kurangi saldo dengan taruhan
+    updateBalance(-betAmount); // Deduct the bet amount from the balance
 
     let delay = 0; // Initial delay for the first column
 
     columns.forEach((column, index) => {
         if (currentItems[index]) {
-            // Jika sudah ada item, putar kolom
+            // If items are already in the column, rotate the column
             setTimeout(() => {
                 rotateColumn(column, currentItems[index]);
             }, delay);
         } else {
-            // Jika belum ada item, isi dengan simbol acak
+            // If no items are in the column, fill with random symbols
             const items = generateRandomSymbols();
-            currentItems[index] = items; // Simpan item yang baru
+            currentItems[index] = items; // Save the new items
             setTimeout(() => {
                 fillColumn(column, items);
             }, delay);
         }
 
-        // Reset posisi untuk animasi putaran
+        // Reset the position for spin animation
         column.style.transition = "none";
         column.style.transform = "translateY(-400px)"; // Total height for 5 items (5 * 80px)
 
-        // Animasi untuk menunjukkan item mengisi kolom
+        // Animate to show spinning items
         setTimeout(() => {
             column.style.transition = "transform 2s ease-out";
             column.style.transform = "translateY(0)";
         }, delay);
 
-        // Increment delay untuk menciptakan efek kiri ke kanan
-        delay += 200; // Sesuaikan waktu untuk efek yang diinginkan
+        // Increment delay for left-to-right spin effect
+        delay += 200; // Adjust time for the desired effect
     });
 
-    // Cek hasil setelah animasi selesai
+    // Check the result after the animation ends
     setTimeout(checkResult, delay + 2000);
 }
 
 function checkResult() {
-    // Convert NodeList to an array using Array.from()
     const visibleItems = Array.from(columns).map(column => {
         const columnItems = Array.from(column.querySelectorAll(".slot-item"));
-        return columnItems.map(item => item.textContent); // Ambil semua simbol dalam kolom
+        return columnItems.map(item => item.textContent); // Get symbols in each column
     });
 
     let totalWin = 0;
     const winningLines = [];
 
-    // Periksa setiap payline
+    // Check each payline
     paylines.forEach(line => {
-        const lineSymbols = line.map((index, i) => visibleItems[i][index]); // Ambil simbol di setiap kolom sesuai payline
+        const lineSymbols = line.map((index, i) => visibleItems[i][index]); // Get symbols on the payline
 
-        // Periksa apakah seluruh simbol dalam garis payline sama
+        // Check if all symbols in the payline are the same
         if (lineSymbols.every(symbol => symbol === lineSymbols[0])) {
-            const symbol = symbols.find(s => s.name === lineSymbols[0]); // Menemukan simbol berdasarkan nama
-            totalWin += symbol.value;
-            winningLines.push(lineSymbols[0]);
+            const symbol = symbols.find(s => s.name === lineSymbols[0]); // Find the symbol based on name
+            if (symbol) {
+                totalWin += symbol.value; // Add the win based on symbol value
+                winningLines.push(lineSymbols[0]);
 
-            // Spotlight simbol yang menang pada kolom yang sesuai
-            line.forEach((colIndex, rowIndex) => {
-                const column = columns[colIndex];
-                const winningItem = column.querySelectorAll(".slot-item")[rowIndex];
-                winningItem.classList.add("spotlight"); // Tambahkan efek spotlight
-            });
+                // Highlight the winning items in the corresponding columns
+                line.forEach((colIndex, rowIndex) => {
+                    const column = columns[colIndex];
+                    const winningItem = column.querySelectorAll(".slot-item")[rowIndex];
+                    winningItem.classList.add("spotlight"); // Add spotlight effect
+                });
+            }
         }
     });
 
     if (totalWin > 0) {
+        console.log("Total Win: " + totalWin); // Debugging: show total win
         alert("Selamat! Anda menang " + totalWin + "!");
-        updateBalance(totalWin); // Tambahkan kemenangan ke saldo pemain
+        
+        // Update balance after winning
+        updateBalance(totalWin); // Add win to the player's balance
     } else {
+        console.log("Tidak ada kemenangan."); // Debugging: no win
     }
 
-    console.log("Winning lines:", winningLines); // Menampilkan garis kemenangan di konsol
+    console.log("Winning lines:", winningLines); // Display the winning lines in the console
 }
 
-// Fungsi untuk memperbarui saldo pemain
+// Function to update the player's balance
 function updateBalance(amount) {
-    balance += amount;
-    balanceDisplay.textContent = "Saldo: " + balance;
+    balance += amount; // Add the amount to the balance
+    balanceDisplay.textContent = "Saldo: " + balance; // Update the balance display on the screen
 }
 
 startButton.addEventListener("click", animateSlots);

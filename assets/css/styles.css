@@ -1,0 +1,195 @@
+/* Background */
+body {
+    background-image: url('/assets/img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Slot Machine Wrapper */
+.slot-wrapper {
+    max-width: 1000px;
+    margin: 90px auto;
+    padding: 40px;
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.8), rgba(50, 50, 50, 0.9));
+    border-radius: 20px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.slot-wrapper:hover {
+    transform: scale(1.02);
+}
+
+/* Slot Container */
+.slot-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 0;  /* Removed gap between columns */
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+/* Slot Column */
+.slot-column {
+    width: 100px;
+    height: 400px;
+    overflow: hidden;
+    border: 2px solid #555;
+    border-radius: 15px;
+    background: linear-gradient(180deg, #f7f7f7, #e0e0e0);
+    position: relative;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    margin-right: 0;  /* Ensures the columns have no margin between them */
+}
+
+/* Optional: Remove the margin at the bottom of the last column */
+.slot-column:last-child {
+    margin-right: 0;
+}
+
+.slot-column:hover {
+    transform: translateY(-5px);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Slot Item */
+.slot-item {
+    width: 100%;
+    height: 80px;
+    font-size: 3rem;
+    font-family: 'Arial', sans-serif;
+    color: #4caf50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    background: linear-gradient(145deg, #ffffff, #e0e0e0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease-out, box-shadow 0.3s ease;
+}
+
+.slot-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #e0ffe0, #c8f7c8);
+}
+
+/* Controls */
+.slot-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+    gap: 20px;
+}
+
+.slot-controls:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Info Styling */
+.slot-controls .info {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.slot-controls .info span {
+    display: inline-block;
+    margin: 0 20px;
+}
+
+/* Bet and Balance Info Styling */
+.slot-controls .info span strong {
+    color: #f44336;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Start Button */
+.btn-danger {
+    font-size: 1.4rem;
+    padding: 12px 30px;
+    background: linear-gradient(145deg, #ff4081, #ff80ab);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 8px 20px rgba(255, 64, 129, 0.4);
+}
+
+.btn-danger:hover {
+    background: linear-gradient(145deg, #ff80ab, #ffc0cb);
+    transform: scale(1.1);
+    box-shadow: 0px 10px 30px rgba(255, 64, 129, 0.5);
+}
+
+.btn-danger:focus {
+    outline: none;
+    box-shadow: 0px 4px 15px rgba(255, 64, 129, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .slot-wrapper {
+        padding: 20px;
+        max-width: 95%;
+    }
+
+    .slot-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .slot-column {
+        margin-bottom: 15px;
+    }
+
+    .slot-controls {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .btn-danger {
+        font-size: 1.2rem;
+        padding: 10px 25px;
+    }
+}
+
+/* Efek Spotlight pada item yang menang */
+.spotlight {
+    animation: spotlightEffect 1s ease-out;
+    background-color: yellow;
+    border: 2px solid red;
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.7);
+}
+
+@keyframes spotlightEffect {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
