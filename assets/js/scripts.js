@@ -2,88 +2,210 @@ const symbols = [
     { name: "🍒", value: 5 },
     { name: "🍋", value: 10 },
     { name: "🍉", value: 15 },
-    { name: "🍇", value: 20 },
-    { name: "🍊", value: 25 },
-    { name: "🍍", value: 30 }
-  ];
-  
-  // Menyesuaikan paylines untuk 6 kolom dan 5 baris
-  const paylines = [
+    { name: "🍇", value: 20 }
+    // { name: "🍊", value: 25 },
+    // { name: "🍍", value: 30 }
+];
+
+// Paylines untuk 6 kolom dan 5 tingkat
+const paylines = [
     [0, 0, 0, 0, 0, 0], // Horizontal baris atas
     [1, 1, 1, 1, 1, 1], // Horizontal baris kedua
     [2, 2, 2, 2, 2, 2], // Horizontal baris ketiga
     [3, 3, 3, 3, 3, 3], // Horizontal baris keempat
-    [4, 4, 4, 4, 4, 4], // Horizontal baris kelima
-    [0, 1, 2, 3, 4, 5], // Diagonal kiri ke kanan
-    [5, 4, 3, 2, 1, 0], // Diagonal kanan ke kiri
-    [0, 1, 2, 3, 4, 5], // Vertical kolom pertama
-    [1, 2, 3, 4, 5, 0], // Vertical kolom kedua
-    [2, 3, 4, 5, 0, 1], // Vertical kolom ketiga
-    [3, 4, 5, 0, 1, 2], // Vertical kolom keempat
-    [4, 5, 0, 1, 2, 3], // Vertical kolom kelima
-    [5, 0, 1, 2, 3, 4]  // Vertical kolom keenam
-  ];
-  
-  // Fungsi untuk menghasilkan gulungan secara acak
-  function spinReels(reelCount, rowCount) {
-    const reels = [];
-    for (let i = 0; i < reelCount; i++) {
-      const reel = [];
-      for (let j = 0; j < rowCount; j++) {
-        reel.push(symbols[Math.floor(Math.random() * symbols.length)]);
-      }
-      reels.push(reel);
-    }
-    return reels;
-  }
-  
-  // Fungsi untuk memeriksa kemenangan berdasarkan paylines
-  function checkWin(reels, paylines) {
-    let totalWin = 0;
-    const winningLines = [];
-  
-    paylines.forEach((line, index) => {
-      const firstSymbol = reels[0][line[0]];  // Ambil simbol pertama pada garis
-      let isWinningLine = true;
-  
-      for (let i = 1; i < reels.length; i++) {
-        const symbol = reels[i][line[i]];  // Ambil simbol berikutnya sesuai dengan posisi
-        // Periksa apakah simbolnya sama, dan bukan wild
-        if (symbol.name !== firstSymbol.name) {
-          isWinningLine = false;
-          break;
-        }
-      }
-  
-      if (isWinningLine) {
-        totalWin += firstSymbol.value; // Tambahkan kemenangan berdasarkan simbol
-        winningLines.push({ lineIndex: index, symbol: firstSymbol.name });
-      }
-    });
-  
-    return { totalWin, winningLines };
-  }
-  
-  // Fungsi untuk menampilkan gulungan di tampilan
-  function displayReels(reels) {
-    for (let i = 0; i < reels.length; i++) {
-      const column = document.getElementById(`column-${i + 1}`);
-      column.innerHTML = ""; // Clear previous results
-      reels[i].forEach(item => {
+    [4, 4, 4, 4, 4, 4], // Horizontal baris bawah
+    [0, 1, 2, 3, 4, 0], // Diagonal kiri ke kanan
+    [4, 3, 2, 1, 0, 4], // Diagonal kanan ke kiri
+    [0, 0, 1, 1, 2, 2], // Zigzag pola 1
+    [2, 2, 3, 3, 4, 4], // Zigzag pola 2
+    [0, 1, 1, 2, 2, 3], // Zigzag pola 3
+    [1, 0, 2, 0, 3, 0], // Vertikal pola zigzag
+    [4, 4, 3, 3, 2, 2], // Zigzag terbalik
+    [0, 1, 0, 1, 0, 1], // Pola vertikal baris pertama dan kedua
+    [2, 3, 2, 3, 2, 3], // Pola vertikal baris ketiga dan keempat
+    [1, 2, 3, 4, 3, 2], // Pola diagonal berliku
+    [3, 2, 1, 0, 1, 2], // Pola diagonal berliku terbalik
+    [0, 2, 4, 2, 0, 2], // Pola loncat tengah
+    [4, 2, 0, 2, 4, 2], // Pola loncat tengah terbalik
+    [0, 1, 2, 1, 2, 3], // Pola zigzag terbalik 1
+    [3, 2, 1, 2, 1, 0], // Pola zigzag terbalik 2
+    [1, 0, 3, 0, 2, 1], // Pola vertikal loncat
+    [2, 1, 3, 1, 4, 3], // Pola zigzag vertikal
+    [4, 2, 1, 2, 3, 2], // Pola zigzag terbalik 3
+    [0, 2, 2, 3, 3, 0], // Pola melingkar 1
+    [4, 3, 2, 1, 0, 4], // Pola melingkar 2
+    [0, 1, 0, 1, 2, 3], // Pola berputar pertama
+    [4, 3, 4, 3, 2, 1], // Pola berputar kedua
+    [1, 1, 2, 2, 3, 3], // Pola zigzag vertikal berputar
+    [3, 3, 2, 2, 1, 1], // Pola zigzag terbalik berputar
+    [0, 0, 0, 3, 3, 3], // Pola horizontal + vertikal
+    [4, 4, 1, 2, 3, 0], // Pola mix kiri-kanan
+    [0, 1, 0, 3, 4, 1], // Pola mix atas-bawah
+    [2, 3, 4, 3, 2, 1], // Pola zigzag besar
+    [3, 2, 1, 2, 3, 4], // Pola zigzag terbalik besar
+    [1, 0, 2, 3, 1, 4], // Pola campuran besar
+    [2, 2, 3, 2, 4, 2], // Pola vertikal tengah
+    [3, 3, 2, 3, 1, 3], // Pola vertikal terbalik
+    [0, 3, 2, 4, 3, 1], // Pola diagonal menurun
+    [4, 1, 3, 0, 1, 2], // Pola diagonal naik
+    [0, 3, 4, 2, 1, 0], // Pola zigzag mendatar
+    [1, 2, 4, 1, 2, 0], // Pola melingkar naik
+    [3, 1, 0, 4, 2, 0], // Pola melingkar turun
+    [0, 0, 2, 2, 4, 4], // Pola zigzag tengah
+    [3, 1, 4, 2, 3, 0], // Pola vertikal berputar
+    [0, 2, 1, 0, 3, 4], // Pola dua arah
+    [4, 3, 0, 1, 2, 0], // Pola melingkar diagonal
+    [2, 1, 4, 3, 2, 4], // Pola vertikal sirkular
+    [3, 0, 1, 3, 0, 2], // Pola vertikal zigzag
+    [4, 3, 2, 1, 2, 4], // Pola vertikal terbalik diagonal
+    [1, 1, 0, 2, 3, 3], // Pola berputar diagonal
+    [0, 3, 1, 2, 4, 0], // Pola campuran diagonal
+    [2, 0, 3, 4, 1, 2], // Pola zigzag melengkung
+    [4, 2, 0, 3, 1, 4], // Pola vertikal berputar terbalik
+    [1, 0, 4, 2, 3, 1], // Pola zigzag campuran
+    [0, 2, 3, 1, 4, 0], // Pola berputar terbalik
+    [3, 1, 4, 0, 2, 2], // Pola berputar maju
+    [2, 3, 4, 1, 0, 0], // Pola campuran diagonal
+    [0, 2, 1, 3, 4, 2], // Pola zigzag horizontal
+    [1, 3, 4, 2, 0, 1], // Pola diagonal terbalik campuran
+    [2, 4, 1, 0, 2, 1], // Pola vertikal berliku
+    [4, 0, 3, 1, 2, 4], // Pola melingkar besar
+    [3, 2, 4, 1, 3, 2], // Pola sirkular terbalik
+    [0, 4, 2, 1, 3, 2], // Pola diagonal campuran terbalik
+    [2, 0, 1, 4, 2, 0], // Pola berputar sirkular
+    [3, 4, 2, 1, 0, 3], // Pola zigzag berputar
+    [4, 1, 3, 4, 2, 0], // Pola diagonal melingkar
+    [1, 4, 0, 2, 3, 4], // Pola sirkular besar terbalik
+    [2, 1, 3, 4, 2, 0], // Pola vertikal besar
+    [3, 2, 0, 4, 1, 3], // Pola diagonal turun
+    [4, 0, 2, 3, 1, 0], // Pola berputar campuran
+    [0, 1, 3, 2, 4, 0], // Pola zigzag campuran terbalik
+    [3, 1, 4, 3, 2, 2], // Pola melingkar diagonal
+    [1, 0, 3, 2, 1, 0], // Pola vertikal zigzag campuran
+    [2, 3, 1, 4, 2, 3], // Pola melingkar zigzag
+    [0, 4, 3, 1, 4, 0], // Pola vertikal melingkar
+    [2, 1, 0, 2, 4, 3], // Pola diagonal besar
+    [1, 3, 4, 2, 3, 1], // Pola zigzag vertikal besar
+    [3, 4, 2, 0, 1, 2], // Pola berputar terbalik besar
+    [2, 1, 3, 4, 1, 0], // Pola vertikal melengkung
+    [0, 4, 2, 3, 1, 4], // Pola berputar sirkular besar
+    [1, 3, 0, 4, 3, 1]  // Pola diagonal zigzag
+];
+
+
+const columns = document.querySelectorAll(".slot-items");
+const startButton = document.getElementById("start-button");
+const balanceDisplay = document.getElementById("balance");
+
+let currentItems = []; // Array untuk menyimpan item yang sudah ada di setiap kolom
+let balance = 1000; // Saldo awal pemain
+const betAmount = 50; // Jumlah taruhan per putaran
+
+function generateRandomSymbols() {
+    return Array.from({ length: 5 }, () => symbols[Math.floor(Math.random() * symbols.length)]);
+}
+
+function fillColumn(column, items) {
+    column.innerHTML = ""; // Clear column
+    items.forEach((item) => {
         const div = document.createElement("div");
         div.classList.add("slot-item");
-        div.innerText = item.name;
+        div.textContent = item.name;
         column.appendChild(div);
-      });
+    });
+}
+
+function rotateColumn(column, items) {
+    // Geser semua item ke atas
+    items.push(items.shift()); // Menggeser elemen pertama ke akhir array
+    fillColumn(column, items); // Isi kolom dengan array yang sudah digeser
+}
+
+function animateSlots() {
+    if (balance < betAmount) {
+        alert("Saldo tidak cukup untuk bertaruh.");
+        return;
     }
-  }
-  
-  // Contoh penggunaan
-  const reels = spinReels(6, 5); // 6 kolom dan 5 baris
-  console.log("Reels:", reels);
-  displayReels(reels);
-  
-  const result = checkWin(reels, paylines);
-  console.log("Total Win:", result.totalWin);
-  console.log("Winning Lines:", result.winningLines);
-  
+
+    updateBalance(-betAmount); // Kurangi saldo dengan taruhan
+
+    let delay = 0; // Initial delay for the first column
+
+    columns.forEach((column, index) => {
+        if (currentItems[index]) {
+            // Jika sudah ada item, putar kolom
+            setTimeout(() => {
+                rotateColumn(column, currentItems[index]);
+            }, delay);
+        } else {
+            // Jika belum ada item, isi dengan simbol acak
+            const items = generateRandomSymbols();
+            currentItems[index] = items; // Simpan item yang baru
+            setTimeout(() => {
+                fillColumn(column, items);
+            }, delay);
+        }
+
+        // Reset posisi untuk animasi putaran
+        column.style.transition = "none";
+        column.style.transform = "translateY(-400px)"; // Total height for 5 items (5 * 80px)
+
+        // Animasi untuk menunjukkan item mengisi kolom
+        setTimeout(() => {
+            column.style.transition = "transform 2s ease-out";
+            column.style.transform = "translateY(0)";
+        }, delay);
+
+        // Increment delay untuk menciptakan efek kiri ke kanan
+        delay += 200; // Sesuaikan waktu untuk efek yang diinginkan
+    });
+
+    // Cek hasil setelah animasi selesai
+    setTimeout(checkResult, delay + 2000);
+}
+
+function checkResult() {
+    // Convert NodeList to an array using Array.from()
+    const visibleItems = Array.from(columns).map(column => {
+        const columnItems = Array.from(column.querySelectorAll(".slot-item"));
+        return columnItems.map(item => item.textContent); // Ambil semua simbol dalam kolom
+    });
+
+    let totalWin = 0;
+    const winningLines = [];
+
+    // Periksa setiap payline
+    paylines.forEach(line => {
+        const lineSymbols = line.map((index, i) => visibleItems[i][index]); // Ambil simbol di setiap kolom sesuai payline
+
+        // Periksa apakah seluruh simbol dalam garis payline sama
+        if (lineSymbols.every(symbol => symbol === lineSymbols[0])) {
+            const symbol = symbols.find(s => s.name === lineSymbols[0]); // Menemukan simbol berdasarkan nama
+            totalWin += symbol.value;
+            winningLines.push(lineSymbols[0]);
+
+            // Spotlight simbol yang menang pada kolom yang sesuai
+            line.forEach((colIndex, rowIndex) => {
+                const column = columns[colIndex];
+                const winningItem = column.querySelectorAll(".slot-item")[rowIndex];
+                winningItem.classList.add("spotlight"); // Tambahkan efek spotlight
+            });
+        }
+    });
+
+    if (totalWin > 0) {
+        alert("Selamat! Anda menang " + totalWin + "!");
+        updateBalance(totalWin); // Tambahkan kemenangan ke saldo pemain
+    } else {
+    }
+
+    console.log("Winning lines:", winningLines); // Menampilkan garis kemenangan di konsol
+}
+
+// Fungsi untuk memperbarui saldo pemain
+function updateBalance(amount) {
+    balance += amount;
+    balanceDisplay.textContent = "Saldo: " + balance;
+}
+
+startButton.addEventListener("click", animateSlots);
