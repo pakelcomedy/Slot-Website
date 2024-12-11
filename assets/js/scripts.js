@@ -147,9 +147,23 @@ function fillColumn(column, items) {
 }
 
 function animateSlots() {
+    const user = auth.currentUser;
+
+    // Disable Start button while process is running
+    startButton.disabled = true;
+
+    if (!user) {
+        showGoogleSignInButton();
+        // Re-enable the Start button after showing sign-in
+        startButton.disabled = false;
+        return;
+    }
+
     getBalanceFromFirebase().then(balance => {
         if (balance < betAmount) {
             alert("Insufficient balance to place the bet.");
+            // Re-enable the Start button if there are issues
+            startButton.disabled = false;
             return;
         }
 
@@ -160,37 +174,32 @@ function animateSlots() {
 
         let delay = 0;
         columns.forEach((column, index) => {
-            // Initial setup: clear previous state
             column.style.transition = "none";  // Disable transition during the initial setup
             column.style.animation = "none";   // Reset any previous animations
             column.offsetHeight; // Trigger reflow to reset animation (important for smooth restart)
-
-            // Set initial position for smooth animation
             column.style.transform = "translateY(0)"; // Ensure no initial offset
 
-            // After initial setup, start the upward movement
             setTimeout(() => {
-                column.style.transition = "transform 2s cubic-bezier(0.2, 0.8, 0.2, 1)"; // Smooth easing function
-                column.style.transform = "translateY(-500px)";  // Move column upwards
+                column.style.transition = "transform 2s cubic-bezier(0.2, 0.8, 0.2, 1)"; 
+                column.style.transform = "translateY(-500px)";  
             }, delay);
 
-            // After upward movement, change the items and bring them back down
             setTimeout(() => {
-                // Update column items here after all items are off-screen
                 const items = generateRandomSymbols();
                 currentItems[index] = items;
                 fillColumn(column, items);
+                column.style.transition = "transform 2s cubic-bezier(0.2, 0.8, 0.2, 1)"; 
+                column.style.transform = "translateY(0)";
+            }, delay + 2000);
 
-                // Return the column back to its original position
-                column.style.transition = "transform 2s cubic-bezier(0.2, 0.8, 0.2, 1)";  // Smooth return
-                column.style.transform = "translateY(0)";  // End position
-            }, delay + 2000);  // Update items after 2 seconds (when the column has gone off-screen)
-
-            delay += 200;  // Stagger the delay for each column
+            delay += 200;
         });
 
-        // Check the result after all columns have finished their animation
-        setTimeout(checkResult, delay + 3000);  // Check results after the final animation completes
+        setTimeout(() => {
+            checkResult();
+            // Re-enable Start button after the process is complete
+            startButton.disabled = false;
+        }, delay + 3000);  // Check results after the final animation completes
     });
 }
 
@@ -229,7 +238,6 @@ function checkResult() {
     });
 
     if (totalWin > 0) {
-        alert(`Congratulations! You won ${totalWin}!`);
         updateFirebaseBalance(totalWin); // Add winnings to balance
     }
 }
@@ -251,7 +259,6 @@ function getBalanceFromFirebase() {
                     resolve(1000);  // Default balance for new users
                 }
             }).catch(error => {
-                console.error("Error fetching balance from Firebase:", error);
                 reject(error);
             });
         } else {
@@ -264,7 +271,6 @@ function updateFirebaseBalance(amount) {
     const user = auth.currentUser;
     if (user) {
         const userRef = ref(database, "users/" + user.uid + "/balance");
-
         runTransaction(userRef, (currentBalance) => {
             if (currentBalance === null) {
                 return 1000 + amount; // Initialize balance if it doesn't exist
@@ -281,17 +287,25 @@ function updateFirebaseBalance(amount) {
     }
 }
 
-// Firebase Authentication
-googleSignInButton.addEventListener("click", () => {
-    signInWithPopup(auth, googleProvider)
-        .then(result => {
-            const user = result.user;
-            checkAndCreateUser(user);
-        })
-        .catch(error => {
-            console.error("Error signing in with Google:", error);
-        });
-});
+function showGoogleSignInButton() {
+    const googleSignInButton = document.createElement("button");
+    googleSignInButton.id = "google-sign-in";
+    googleSignInButton.classList.add("btn", "btn-outline-primary", "mt-3");
+    googleSignInButton.textContent = "Continue with Google";
+    document.body.appendChild(googleSignInButton);
+
+    googleSignInButton.addEventListener("click", () => {
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                const user = result.user;
+                checkAndCreateUser(user);
+                googleSignInButton.remove();  // Remove the Google Sign-In button after successful login
+            })
+            .catch(error => {
+                console.error("Error signing in with Google:", error);
+            });
+    });
+}
 
 function checkAndCreateUser(user) {
     const userRef = ref(database, "users/" + user.uid);
@@ -320,10 +334,7 @@ function checkAndCreateUser(user) {
 function goToGame(user) {
     getBalanceFromFirebase().then(balance => {
         updateLocalBalance(balance);
-    }).catch(error => {
-        console.error("Error fetching user data:", error);
     });
 }
 
-// Start Button Event Listener
-startButton.addEventListener("click", animateSlots);
+startButton.addEventListener("click", animateSlots);    
