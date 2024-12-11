@@ -190,7 +190,7 @@ function animateSlots() {
         });
 
         // Check the result after all columns have finished their animation
-        setTimeout(checkResult, delay + 2000);  // Check results after the final animation completes
+        setTimeout(checkResult, delay + 3000);  // Check results after the final animation completes
     });
 }
 
