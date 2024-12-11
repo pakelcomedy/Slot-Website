@@ -237,8 +237,14 @@ function checkResult() {
         }
     });
 
+    // Show the win amount if there's a win
+    const winElement = document.getElementById("win");
     if (totalWin > 0) {
+        winElement.textContent = totalWin;
+        winElement.style.display = "inline"; // Show the win element
         updateFirebaseBalance(totalWin); // Add winnings to balance
+    } else {
+        winElement.style.display = "none"; // Hide the win element if no win
     }
 }
 
