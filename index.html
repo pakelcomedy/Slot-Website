@@ -1,99 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slot Game</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('https://source.unsplash.com/1600x900/?pineapple'); /* Ganti dengan gambar background Anda */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            color: white;
-        }
 
-        .slot-machine {
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 50px auto;
-            max-width: 700px;
-        }
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        .slot-row {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .slot-item {
-            width: 70px;
-            height: 70px;
-            border: 2px solid #333;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            background-color: white;
-        }
-
-        .slot-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .btn-start {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: red;
-            color: white;
-            font-size: 1.5rem;
-            border: none;
-        }
-
-        .slot-footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 1.2rem;
-        }
-    </style>
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="slot-machine shadow">
-            <!-- Slot Display -->
-            <div class="slot-row">
-                <div class="slot-item">🍒</div>
-                <div class="slot-item">🍍</div>
-                <div class="slot-item">🍋</div>
-                <div class="slot-item">🍉</div>
-                <div class="slot-item">🍇</div>
+
+    <div class="container-fluid">
+        <!-- Slot Machine Wrapper -->
+        <div class="slot-wrapper">
+            <!-- Slot Container -->
+            <div class="slot-container d-flex justify-content-center">
+                <div class="slot-column mx-2">
+                    <div class="slot-items" id="column-1"></div>
+                </div>
+                <div class="slot-column mx-2">
+                    <div class="slot-items" id="column-2"></div>
+                </div>
+                <div class="slot-column mx-2">
+                    <div class="slot-items" id="column-3"></div>
+                </div>
+                <div class="slot-column mx-2">
+                    <div class="slot-items" id="column-4"></div>
+                </div>
+                <div class="slot-column mx-2">
+                    <div class="slot-items" id="column-5"></div>
+                </div>
+                <div class="slot-column mx-2">
+                    <div class="slot-items" id="column-6"></div>
+                </div>
             </div>
             <!-- Controls -->
-            <div class="slot-controls">
-                <div>
-                    <span class="me-3">Bet:</span>
-                    <span class="fw-bold text-warning">1000</span>
+            <div class="slot-controls text-center mt-4">
+                <div class="info mb-3">
+                    <span>Bet: <strong class="text-warning">50</strong></span>
+                    <span>Balance: <strong class="text-warning">id="balance"</strong></span>
                 </div>
-                <button class="btn-start">Start</button>
-                <div>
-                    <span class="me-3">Balance:</span>
-                    <span class="fw-bold text-warning">12000</span>
-                </div>
-            </div>
-            <!-- Footer -->
-            <div class="slot-footer">
-                <i class="bi bi-person-circle"></i>
+                <button id="start-button" class="btn btn-danger">Start</button>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JS & Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
 </body>
+
 </html>

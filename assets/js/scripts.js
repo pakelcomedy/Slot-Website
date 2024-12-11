@@ -162,50 +162,50 @@ function animateSlots() {
 function checkResult() {
     const visibleItems = Array.from(columns).map(column => {
         const columnItems = Array.from(column.querySelectorAll(".slot-item"));
-        return columnItems.map(item => item.textContent); // Get symbols in each column
+        return columnItems.map(item => item.textContent); // Dapatkan simbol di setiap kolom
     });
 
     let totalWin = 0;
     const winningLines = [];
 
-    // Check each payline
+    // Periksa setiap payline
     paylines.forEach(line => {
-        const lineSymbols = line.map((index, i) => visibleItems[i][index]); // Get symbols on the payline
+        const lineSymbols = line.map((index, i) => visibleItems[i][index]); // Ambil simbol pada payline
 
-        // Check if all symbols in the payline are the same
+        // Periksa apakah semua simbol di payline sama
         if (lineSymbols.every(symbol => symbol === lineSymbols[0])) {
-            const symbol = symbols.find(s => s.name === lineSymbols[0]); // Find the symbol based on name
+            const symbol = symbols.find(s => s.name === lineSymbols[0]); // Temukan simbol berdasarkan nama
             if (symbol) {
-                totalWin += symbol.value; // Add the win based on symbol value
+                totalWin += symbol.value; // Tambahkan nilai simbol ke total kemenangan
                 winningLines.push(lineSymbols[0]);
 
-                // Highlight the winning items in the corresponding columns
-                line.forEach((colIndex, rowIndex) => {
+                // Sorot item yang menang
+                line.forEach((rowIndex, colIndex) => {
                     const column = columns[colIndex];
                     const winningItem = column.querySelectorAll(".slot-item")[rowIndex];
-                    winningItem.classList.add("spotlight"); // Add spotlight effect
+                    winningItem.classList.add("spotlight"); // Tambahkan efek spotlight
                 });
             }
         }
     });
 
     if (totalWin > 0) {
-        console.log("Total Win: " + totalWin); // Debugging: show total win
-        alert("Selamat! Anda menang " + totalWin + "!");
-        
-        // Update balance after winning
-        updateBalance(totalWin); // Add win to the player's balance
+        alert(`Selamat! Anda menang ${totalWin}!`);
+        updateBalance(totalWin); // Tambahkan kemenangan ke saldo
     } else {
-        console.log("Tidak ada kemenangan."); // Debugging: no win
+        alert("Tidak ada kemenangan.");
     }
 
-    console.log("Winning lines:", winningLines); // Display the winning lines in the console
+    // Debugging
+    console.log("Total Win:", totalWin);
+    console.log("Winning lines:", winningLines);
+    console.log("Updated Balance:", balance);
 }
 
 // Function to update the player's balance
 function updateBalance(amount) {
     balance += amount; // Add the amount to the balance
-    balanceDisplay.textContent = "Saldo: " + balance; // Update the balance display on the screen
+    balanceDisplay.textContent = balance; // Update the balance display on the screen
 }
 
-startButton.addEventListener("click", animateSlots);
+startButton.addEventListener("click", animateSlots);    
