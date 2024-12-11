@@ -23,7 +23,7 @@ Welcome to the Slot Game! This is a simple web-based slot machine game that lets
 The directory is organized as follows:
 
 ```
-slot-game/
+Slot-Website/
 ├── index.html               # Main HTML file for the game
 ├── assets/                  # Directory for all static assets
 │   ├── css/                 # Stylesheets for the game
@@ -48,9 +48,9 @@ To run the game locally:
 
 1. **Clone the repository**:
    ```bash
-[   git clone https://github.com/yourusername/slot-game.git](https://github.com/pakelcomedy/Slot-Website)
+   git clone https://github.com/pakelcomedy/Slot-Website.git
    ```
-   
+
 2. **Navigate to the project directory**:
    ```bash
    cd Slot-Website
@@ -80,5 +80,3 @@ If you'd like to contribute to the project:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
