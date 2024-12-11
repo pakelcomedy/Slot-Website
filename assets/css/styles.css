@@ -187,3 +187,20 @@ body {
         padding: 12px 30px;
     }
 }
+
+@keyframes slotSpin {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-400px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.slot-items {
+    animation: slotSpin 2s ease-out infinite; 
+    transition: transform 2s ease-out;
+}
