@@ -1,6 +1,10 @@
 const symbols = [
-    { name: "🍒", value: 200 },
-    { name: "🍋", value: 300 }
+    { name: "🍒", value: 50 },
+    { name: "🍋", value: 100 },
+    { name: "🍉", value: 200 },
+    { name: "🍊", value: 300 },
+    { name: "🍍", value: 400 },
+    { name: "🍇", value: 500 }
 ];
 
 // Paylines untuk 6 kolom dan 5 tingkat
@@ -92,16 +96,16 @@ const columns = document.querySelectorAll(".slot-items");
 const startButton = document.getElementById("start-button");
 const balanceDisplay = document.getElementById("balance");
 
-let currentItems = []; // Array to store the items in each column
-let balance = 1000; // Initial player balance
-const betAmount = 50; // Bet amount per spin
+let currentItems = [];
+let balance = 1000;
+const betAmount = 50;
 
 function generateRandomSymbols() {
     return Array.from({ length: 5 }, () => symbols[Math.floor(Math.random() * symbols.length)]);
 }
 
 function fillColumn(column, items) {
-    column.innerHTML = ""; // Clear column
+    column.innerHTML = "";
     items.forEach((item) => {
         const div = document.createElement("div");
         div.classList.add("slot-item");
@@ -111,9 +115,8 @@ function fillColumn(column, items) {
 }
 
 function rotateColumn(column, items) {
-    // Shift all items up
-    items.push(items.shift()); // Move the first element to the end
-    fillColumn(column, items); // Refill the column with shifted items
+    items.push(items.shift());
+    fillColumn(column, items);
 }
 
 function animateSlots() {
@@ -122,90 +125,74 @@ function animateSlots() {
         return;
     }
 
-    updateBalance(-betAmount); // Deduct the bet amount from the balance
+    updateBalance(-betAmount);
 
-    let delay = 0; // Initial delay for the first column
+    let delay = 0;
 
     columns.forEach((column, index) => {
-        if (currentItems[index]) {
-            // If items are already in the column, rotate the column
-            setTimeout(() => {
-                rotateColumn(column, currentItems[index]);
-            }, delay);
-        } else {
-            // If no items are in the column, fill with random symbols
-            const items = generateRandomSymbols();
-            currentItems[index] = items; // Save the new items
-            setTimeout(() => {
-                fillColumn(column, items);
-            }, delay);
-        }
+        const items = generateRandomSymbols();
+        currentItems[index] = items;
+        setTimeout(() => {
+            fillColumn(column, items);
+        }, delay);
 
-        // Reset the position for spin animation
         column.style.transition = "none";
-        column.style.transform = "translateY(-400px)"; // Total height for 5 items (5 * 80px)
+        column.style.transform = "translateY(-400px)";
 
-        // Animate to show spinning items
         setTimeout(() => {
             column.style.transition = "transform 2s ease-out";
             column.style.transform = "translateY(0)";
         }, delay);
 
-        // Increment delay for left-to-right spin effect
-        delay += 200; // Adjust time for the desired effect
+        delay += 200;
     });
 
-    // Check the result after the animation ends
     setTimeout(checkResult, delay + 2000);
 }
 
 function checkResult() {
     const visibleItems = Array.from(columns).map(column => {
         const columnItems = Array.from(column.querySelectorAll(".slot-item"));
-        return columnItems.map(item => item.textContent); // Dapatkan simbol di setiap kolom
+        return columnItems.map(item => item.textContent);
     });
 
     let totalWin = 0;
     const winningLines = [];
 
-    // Periksa setiap payline
     paylines.forEach(line => {
-        const lineSymbols = line.map((index, i) => visibleItems[i][index]); // Ambil simbol pada payline
+        const lineSymbols = line.map((index, i) => visibleItems[i][index]);
 
-        // Periksa apakah semua simbol di payline sama
-        if (lineSymbols.every(symbol => symbol === lineSymbols[0])) {
-            const symbol = symbols.find(s => s.name === lineSymbols[0]); // Temukan simbol berdasarkan nama
-            if (symbol) {
-                totalWin += symbol.value; // Tambahkan nilai simbol ke total kemenangan
-                winningLines.push(lineSymbols[0]);
+        // Count occurrences of each symbol in the line
+        const counts = lineSymbols.reduce((acc, symbol) => {
+            acc[symbol] = (acc[symbol] || 0) + 1;
+            return acc;
+        }, {});
 
-                // Sorot item yang menang
-                line.forEach((rowIndex, colIndex) => {
-                    const column = columns[colIndex];
-                    const winningItem = column.querySelectorAll(".slot-item")[rowIndex];
-                    winningItem.classList.add("spotlight"); // Tambahkan efek spotlight
-                });
+        Object.keys(counts).forEach(symbolName => {
+            if (counts[symbolName] >=5) { // Winning condition: 3 or more of the same symbol
+                const symbol = symbols.find(s => s.name === symbolName);
+                if (symbol) {
+                    totalWin += symbol.value * counts[symbolName]; // Award based on occurrences
+                    winningLines.push({ symbol: symbolName, count: counts[symbolName] });
+                }
             }
-        }
+        });
     });
 
     if (totalWin > 0) {
         alert(`Selamat! Anda menang ${totalWin}!`);
-        updateBalance(totalWin); // Tambahkan kemenangan ke saldo
+        updateBalance(totalWin);
     } else {
-        alert("Tidak ada kemenangan.");
     }
 
-    // Debugging
+    console.log("Visible Items:", visibleItems);
+    console.log("Winning Lines:", winningLines);
     console.log("Total Win:", totalWin);
-    console.log("Winning lines:", winningLines);
-    console.log("Updated Balance:", balance);
 }
 
-// Function to update the player's balance
 function updateBalance(amount) {
-    balance += amount; // Add the amount to the balance
-    balanceDisplay.textContent = balance; // Update the balance display on the screen
+    balance += amount;
+    balanceDisplay.textContent = balance;
 }
 
-startButton.addEventListener("click", animateSlots);    
+startButton.addEventListener("click", animateSlots);
