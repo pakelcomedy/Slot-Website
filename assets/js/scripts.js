@@ -1,10 +1,10 @@
 const symbols = [
     { name: "🍒", value: 50 },
     { name: "🍋", value: 100 },
-    { name: "🍉", value: 200 },
-    { name: "🍊", value: 300 },
-    { name: "🍍", value: 400 },
-    { name: "🍇", value: 500 }
+    { name: "🍉", value: 150 },
+    { name: "🍊", value: 200 },
+    { name: "🍍", value: 250 },
+    { name: "🍇", value: 300 }
 ];
 
 // Paylines untuk 6 kolom dan 5 tingkat
@@ -159,21 +159,32 @@ function checkResult() {
     let totalWin = 0;
     const winningLines = [];
 
-    paylines.forEach(line => {
+    // Bersihkan spotlight sebelumnya
+    document.querySelectorAll(".slot-item").forEach(item => item.classList.remove("spotlight"));
+
+    paylines.forEach((line, lineIndex) => {
         const lineSymbols = line.map((index, i) => visibleItems[i][index]);
 
-        // Count occurrences of each symbol in the line
+        // Hitung kemunculan setiap simbol dalam baris
         const counts = lineSymbols.reduce((acc, symbol) => {
             acc[symbol] = (acc[symbol] || 0) + 1;
             return acc;
         }, {});
 
         Object.keys(counts).forEach(symbolName => {
-            if (counts[symbolName] >=5) { // Winning condition: 3 or more of the same symbol
+            if (counts[symbolName] >= 5) { // Kondisi kemenangan
                 const symbol = symbols.find(s => s.name === symbolName);
                 if (symbol) {
-                    totalWin += symbol.value * counts[symbolName]; // Award based on occurrences
-                    winningLines.push({ symbol: symbolName, count: counts[symbolName] });
+                    totalWin += symbol.value * counts[symbolName]; // Nilai kemenangan
+                    winningLines.push({ symbol: symbolName, count: counts[symbolName], line });
+
+                    // Tambahkan efek spotlight ke elemen yang menang
+                    line.forEach((index, i) => {
+                        const winningItem = columns[i].querySelectorAll(".slot-item")[index];
+                        if (winningItem.textContent === symbolName) {
+                            winningItem.classList.add("spotlight");
+                        }
+                    });
                 }
             }
         });
@@ -182,7 +193,6 @@ function checkResult() {
     if (totalWin > 0) {
         alert(`Selamat! Anda menang ${totalWin}!`);
         updateBalance(totalWin);
-    } else {
     }
 
     console.log("Visible Items:", visibleItems);
