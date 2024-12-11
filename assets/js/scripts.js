@@ -126,7 +126,6 @@ const paylines = [
 const columns = document.querySelectorAll(".slot-items");
 const startButton = document.getElementById("start-button");
 const balanceDisplay = document.getElementById("balance");
-const googleSignInButton = document.getElementById("google-sign-in");
 
 let currentItems = [];
 const betAmount = 50;
@@ -153,16 +152,27 @@ function animateSlots() {
     startButton.disabled = true;
 
     if (!user) {
-        showGoogleSignInButton();
-        // Re-enable the Start button after showing sign-in
-        startButton.disabled = false;
-        return;
+        // If not logged in, perform Google sign-in automatically
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                const user = result.user;
+                checkAndCreateUser(user); // Check and create user in Firebase
+                startSlotGame(); // Start the game after successful sign-in
+            })
+            .catch(error => {
+                console.error("Error signing in with Google:", error);
+                startButton.disabled = false; // Re-enable the button in case of error
+            });
+        return; // Exit the function if we're signing in
     }
 
+    startSlotGame(); // If user is already logged in, start the game directly
+}
+
+function startSlotGame() {
     getBalanceFromFirebase().then(balance => {
         if (balance < betAmount) {
             alert("Insufficient balance to place the bet.");
-            // Re-enable the Start button if there are issues
             startButton.disabled = false;
             return;
         }
@@ -197,9 +207,8 @@ function animateSlots() {
 
         setTimeout(() => {
             checkResult();
-            // Re-enable Start button after the process is complete
             startButton.disabled = false;
-        }, delay + 3000);  // Check results after the final animation completes
+        }, delay + 3000);
     });
 }
 
@@ -237,14 +246,13 @@ function checkResult() {
         }
     });
 
-    // Show the win amount if there's a win
     const winElement = document.getElementById("win");
     if (totalWin > 0) {
         winElement.textContent = totalWin;
-        winElement.style.display = "inline"; // Show the win element
-        updateFirebaseBalance(totalWin); // Add winnings to balance
+        winElement.style.display = "inline";
+        updateFirebaseBalance(totalWin); 
     } else {
-        winElement.style.display = "none"; // Hide the win element if no win
+        winElement.style.display = "none";
     }
 }
 
@@ -293,26 +301,6 @@ function updateFirebaseBalance(amount) {
     }
 }
 
-function showGoogleSignInButton() {
-    const googleSignInButton = document.createElement("button");
-    googleSignInButton.id = "google-sign-in";
-    googleSignInButton.classList.add("btn", "btn-outline-primary", "mt-3");
-    googleSignInButton.textContent = "Continue with Google";
-    document.body.appendChild(googleSignInButton);
-
-    googleSignInButton.addEventListener("click", () => {
-        signInWithPopup(auth, googleProvider)
-            .then(result => {
-                const user = result.user;
-                checkAndCreateUser(user);
-                googleSignInButton.remove();  // Remove the Google Sign-In button after successful login
-            })
-            .catch(error => {
-                console.error("Error signing in with Google:", error);
-            });
-    });
-}
-
 function checkAndCreateUser(user) {
     const userRef = ref(database, "users/" + user.uid);
 
@@ -330,17 +318,11 @@ function checkAndCreateUser(user) {
                 console.error("Error creating user:", error);
             });
         } else {
-            goToGame(user);
+            startSlotGame();
         }
     }).catch(error => {
         console.error("Error checking user in database:", error);
     });
 }
 
-function goToGame(user) {
-    getBalanceFromFirebase().then(balance => {
-        updateLocalBalance(balance);
-    });
-}
-
-startButton.addEventListener("click", animateSlots);    
+startButton.addEventListener("click", animateSlots);
