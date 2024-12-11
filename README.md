@@ -48,12 +48,12 @@ To run the game locally:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/slot-game.git
+[   git clone https://github.com/yourusername/slot-game.git](https://github.com/pakelcomedy/Slot-Website)
    ```
    
 2. **Navigate to the project directory**:
    ```bash
-   cd slot-game
+   cd Slot-Website
    ```
 
 3. **Open `index.html` in your browser**:
