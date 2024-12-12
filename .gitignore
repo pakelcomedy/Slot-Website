@@ -1,0 +1,12 @@
+# Ignore node modules
+node_modules/
+
+# Ignore package.json and package-lock.json
+package.json
+package-lock.json
+
+# Ignore assets folder
+assets/
+
+# Ignore .vscode folder
+.vscode/
