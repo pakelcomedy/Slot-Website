@@ -31,7 +31,7 @@ body {
 .slot-container {
     display: flex;
     justify-content: space-between;
-    gap: 30px;
+    gap: 10px;
     margin-bottom: 40px;
     width: 100%;
     flex-wrap: nowrap;
@@ -39,7 +39,7 @@ body {
 
 /* Slot Column */
 .slot-column {
-    width: 120px;
+    width: 140px;
     height: 450px; /* Ensure enough height for 5 items */
     overflow: hidden;
     border: 3px solid #444;
@@ -224,30 +224,36 @@ body {
 @media (max-width: 480px) {
     .slot-wrapper {
         padding: 10px;
-        max-width: 95%;
+        max-width: 100%;
     }
 
     .slot-column {
         width: calc(100% / 6); /* Maintain 6 columns */
-        height: 450px; /* Maintain height for 5 rows */
+        height: 300px; /* Maintain height for 5 rows */
         border-radius: 10px; /* Adjust border-radius for even smaller screens */
     }
 
     .slot-item {
-        font-size: 1.8rem;
-        height: 90px; /* Ensure consistent height */
+        font-size: 1rem;
+        height: 60px; /* Ensure consistent height */
     }
 
     .slot-controls {
-        padding: 15px 20px;
-        gap: 20px;
+        gap: 0px; /* Reduce gap between elements */
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center-align controls */
+    }
+
+    .slot-controls .info {
+        font-size: 1.4rem; /* Reduce font size for info */
     }
 
     .btn-danger {
-        font-size: 1.1rem;
-        padding: 8px 20px;
+        font-size: 1rem; /* Make the button text smaller */
+        padding: 6px 15px; /* Smaller padding for the button */
     }
 }
+
 
 @keyframes slotSpin {
     0% {
