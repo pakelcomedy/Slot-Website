@@ -10,13 +10,13 @@ body {
 
 /* Slot Machine Wrapper */
 .slot-wrapper {
-    max-width: 715px; /* 65% of 1100px */
-    max-height: 477px; /* 65% of 735px */
-    margin: 50px auto;
-    padding: 33px; /* 65% of 50px */
+    max-width: 858px; /* 120% of 715px */
+    max-height: 572px; /* 120% of 477px */
+    margin: 60px auto; /* 120% of 50px */
+    padding: 40px; /* 120% of 33px */
     background: linear-gradient(145deg, #2a2a2a, #3b3b3b);
-    border-radius: 16px; /* 65% of 25px */
-    box-shadow: 0px 19px 32px rgba(0, 0, 0, 0.6), inset 0 0 13px rgba(255, 255, 255, 0.05);
+    border-radius: 20px; /* 120% of 16px */
+    box-shadow: 0px 23px 38px rgba(0, 0, 0, 0.6), inset 0 0 16px rgba(255, 255, 255, 0.05);
     text-align: center;
     position: relative;
     z-index: 1;
@@ -32,35 +32,35 @@ body {
 .slot-container {
     display: flex;
     justify-content: space-between;
-    gap: 6px; /* 65% of 10px */
-    margin-bottom: 26px; /* 65% of 40px */
+    gap: 7px; /* 120% of 6px */
+    margin-bottom: 31px; /* 120% of 26px */
     width: 100%;
     flex-wrap: nowrap;
 }
 
 /* Slot Column */
 .slot-column {
-    width: 91px; /* 65% of 140px */
-    height: 292px; /* 65% of 450px */
+    width: 109px; /* 120% of 91px */
+    height: 350px; /* 120% of 292px */
     overflow: hidden;
-    border: 2px solid #444; /* 65% of 3px */
-    border-radius: 13px; /* 65% of 20px */
+    border: 2px solid #444; /* 120% of 3px */
+    border-radius: 16px; /* 120% of 13px */
     background: linear-gradient(180deg, #2e2e2e, #1a1a1a);
     position: relative;
-    box-shadow: inset 0 0 13px rgba(0, 0, 0, 0.5), 0 3px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease;
 }
 
 .slot-column:hover {
-    transform: translateY(-6px); /* 65% of -10px */
-    box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.1), 0 10px 19px rgba(0, 0, 0, 0.5);
+    transform: translateY(-8px); /* 120% of -6px */
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1), 0 12px 23px rgba(0, 0, 0, 0.5);
 }
 
 /* Slot Item */
 .slot-item {
     width: 100%;
-    height: 59px; /* 65% of 90px */
-    font-size: 1.625rem; /* 65% of 2.5rem */
+    height: 71px; /* 120% of 59px */
+    font-size: 1.95rem; /* 120% of 1.625rem */
     font-weight: bold;
     color: #f4d03f;
     display: flex;
@@ -68,13 +68,13 @@ body {
     align-items: center;
     border-bottom: 1px solid #555;
     background: linear-gradient(145deg, #3a3a3a, #1f1f1f);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     transition: transform 0.4s ease-out, box-shadow 0.3s ease;
 }
 
 .slot-item:hover {
-    transform: scale(1.15);
-    box-shadow: 0 7px 13px rgba(244, 208, 63, 0.7);
+    transform: scale(1.38); /* 120% of 1.15 */
+    box-shadow: 0 8px 16px rgba(244, 208, 63, 0.7);
     background: linear-gradient(145deg, #ffeaa7, #f4d03f);
     color: #000;
 }
@@ -84,31 +84,31 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px; /* 65% of 30px */
+    margin-top: 24px; /* 120% of 20px */
     background: linear-gradient(145deg, #444, #222);
-    padding: 16px 23px; /* 65% of 25px and 35px */
-    border-radius: 13px; /* 65% of 20px */
-    box-shadow: 0px 13px 26px rgba(0, 0, 0, 0.3), inset 0 0 6px rgba(255, 255, 255, 0.05);
+    padding: 19px 28px; /* 120% of 16px and 23px */
+    border-radius: 16px; /* 120% of 13px */
+    box-shadow: 0px 16px 31px rgba(0, 0, 0, 0.3), inset 0 0 7px rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease;
-    gap: 16px; /* 65% of 25px */
+    gap: 19px; /* 120% of 16px */
 }
 
 .slot-controls:hover {
-    transform: translateY(-6px); /* 65% of -10px */
-    box-shadow: 0px 19px 32px rgba(0, 0, 0, 0.4);
+    transform: translateY(-8px); /* 120% of -6px */
+    box-shadow: 0px 23px 38px rgba(0, 0, 0, 0.4);
 }
 
 /* Info Styling */
 .slot-controls .info {
-    font-size: 1.17rem; /* 65% of 1.8rem */
+    font-size: 1.4rem; /* 120% of 1.17rem */
     color: #f4d03f;
     font-weight: bold;
-    text-shadow: 1.3px 1.3px 2.6px rgba(0, 0, 0, 0.3);
+    text-shadow: 1.6px 1.6px 3.1px rgba(0, 0, 0, 0.3);
 }
 
 .slot-controls .info span {
     display: inline-block;
-    margin: 0 16px; /* 65% of 25px */
+    margin: 19px; /* 120% of 16px */
 }
 
 .slot-controls .info span strong {
@@ -117,32 +117,32 @@ body {
 
 /* Start Button */
 .btn-danger {
-    font-size: 1.04rem; /* 65% of 1.6rem */
-    padding: 9px 26px; /* 65% of 15px and 40px */
+    font-size: 1.25rem; /* 120% of 1.04rem */
+    padding: 11px 31px; /* 120% of 9px and 26px */
     background: linear-gradient(145deg, #e74c3c, #c0392b);
     color: white;
     border: none;
-    border-radius: 33px; /* 65% of 50px */
+    border-radius: 40px; /* 120% of 33px */
     transition: all 0.3s ease;
-    box-shadow: 0px 6px 16px rgba(231, 76, 60, 0.5);
+    box-shadow: 0px 7px 19px rgba(231, 76, 60, 0.5);
 }
 
 .btn-danger:hover {
     background: linear-gradient(145deg, #ff6f61, #ff4c4c);
-    transform: scale(1.1);
-    box-shadow: 0px 10px 20px rgba(231, 76, 60, 0.7);
+    transform: scale(1.32); /* 120% of 1.1 */
+    box-shadow: 0px 12px 24px rgba(231, 76, 60, 0.7);
 }
 
 .btn-danger:focus {
     outline: none;
-    box-shadow: 0px 3px 13px rgba(231, 76, 60, 0.8);
+    box-shadow: 0px 4px 16px rgba(231, 76, 60, 0.8);
 }
 
 /* Spotlight Effect for Winning Items */
 .spotlight {
     animation: spotlight-animation 1.2s ease-in-out forwards;
-    border: 2px solid #FFD700; /* 65% of 3px */
-    box-shadow: 0 0 13px 6px rgba(255, 215, 0, 0.8);
+    border: 4px solid #FFD700; /* 120% of 3px */
+    box-shadow: 0 0 16px 8px rgba(255, 215, 0, 0.8);
 }
 
 @keyframes spotlight-animation {
@@ -151,7 +151,7 @@ body {
         opacity: 1;
     }
     50% {
-        transform: scale(1.2);
+        transform: scale(1.44); /* 120% of 1.2 */
         opacity: 1;
     }
     100% {
@@ -163,18 +163,18 @@ body {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .slot-wrapper {
-        padding: 16px; /* 65% of 25px */
-        max-width: 81%; /* 65% of 90% */
+        padding: 19px; /* 120% of 16px */
+        max-width: 97%; /* 120% of 81% */
     }
 
     .slot-container {
         flex-wrap: nowrap;
-        gap: 0; /* Remove gaps */
+        gap: 0;
     }
 
     .slot-column {
-        width: 65px; /* 65% of 100px */
-        height: 292px; /* Maintain height for 5 rows */
+        width: 78px; /* 120% of 65px */
+        height: 350px; /* Maintain height for 5 rows */
     }
 
     .slot-controls {
@@ -184,73 +184,91 @@ body {
     }
 
     .btn-danger {
-        font-size: 1.02rem; /* 65% of 1.4rem */
-        padding: 8px 19px; /* 65% of 12px and 30px */
+        font-size: 1.22rem; /* 120% of 1.02rem */
+        padding: 10px 23px; /* 120% of 8px and 19px */
     }
 }
 
 @media (max-width: 768px) {
     .slot-wrapper {
-        padding: 10px; /* 65% of 15px */
+        padding: 12px; /* 120% of 10px */
     }
 
     .slot-container {
-        flex-wrap: nowrap; /* Ensure horizontal layout on smaller screens */
-        gap: 0; /* Ensure columns are tightly packed */
+        flex-wrap: nowrap;
+        gap: 0;
     }
 
     .slot-column {
-        width: calc(100% / 6); /* Maintain 6 columns */
-        height: 292px; /* Maintain height for 5 rows */
-        border-radius: 10px; /* Adjust border-radius for smaller screens */
+        width: calc(100% / 5); /* Adjust to 5 columns */
+        height: 350px; /* Maintain height for 5 rows */
+        border-radius: 12px; /* 120% of 10px */
     }
 
     .slot-item {
-        font-size: 1.3rem; /* 65% of 2rem */
-        height: 59px; /* Ensure consistent height */
+        font-size: 1.56rem; /* 120% of 1.3rem */
+        height: 71px; /* Maintain consistent height */
     }
 
     .slot-controls {
-        padding: 13px 19px; /* 65% of 20px and 30px */
+        padding: 16px 23px; /* 120% of 13px and 19px */
         flex-direction: column;
         align-items: center;
     }
 
     .btn-danger {
-        font-size: 0.78rem; /* 65% of 1.2rem */
-        padding: 7px 16px; /* 65% of 10px and 25px */
+        font-size: 0.94rem; /* 120% of 0.78rem */
+        padding: 8px 19px; /* 120% of 7px and 16px */
     }
 }
 
 @media (max-width: 480px) {
     .slot-wrapper {
-        padding: 6px; /* 65% of 10px */
-        max-width: 65%; /* 65% of 100% */
+        padding: 7px; /* 120% of 6px */
+        max-width: 78%; /* 120% of 65% */
     }
 
     .slot-column {
-        width: calc(100% / 6); /* Maintain 6 columns */
-        height: 195px; /* 65% of 300px */
-        border-radius: 6px; /* 65% of 10px */
+        width: calc(100% / 5); /* Maintain 5 columns */
+        height: 234px; /* 120% of 195px */
+        border-radius: 7px; /* 120% of 6px */
     }
 
     .slot-item {
-        font-size: 1.17rem; /* 65% of 1.8rem */
-        height: 39px; /* 65% of 60px */
+        font-size: 1.4rem; /* 120% of 1.17rem */
+        height: 47px; /* 120% of 39px */
     }
 
     .slot-controls {
-        gap: 0px; /* Reduce gap between elements */
-        flex-direction: column; /* Stack elements vertically */
-        align-items: center; /* Center-align controls */
+        gap: 0px;
+        flex-direction: column;
+        align-items: center;
     }
 
     .slot-controls .info {
-        font-size: 0.91rem; /* 65% of 1.4rem */
+        font-size: 1.1rem; /* 120% of 0.91rem */
     }
 
     .btn-danger {
-        font-size: 0.65rem; /* 65% of 1rem */
-        padding: 4px 10px; /* 65% of 6px and 15px */
+        font-size: 0.78rem; /* 120% of 0.65rem */
+        padding: 5px 12px; /* 120% of 4px and 10px */
     }
+}
+
+
+@keyframes slotSpin {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-400px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.slot-items {
+    animation: slotSpin 2s ease-out infinite; 
+    transition: transform 2s ease-out;
 }
