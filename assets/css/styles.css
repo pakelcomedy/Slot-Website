@@ -10,13 +10,13 @@ body {
 
 /* Slot Machine Wrapper */
 .slot-wrapper {
-    max-width: 660px; /* 40% less */
-    max-height: 441px; /* 40% less */
-    margin: 30px auto; /* 40% less */
-    padding: 30px; /* 40% less */
+    max-width: 715px; /* 65% of 1100px */
+    max-height: 477px; /* 65% of 735px */
+    margin: 50px auto;
+    padding: 33px; /* 65% of 50px */
     background: linear-gradient(145deg, #2a2a2a, #3b3b3b);
-    border-radius: 15px; /* 40% less */
-    box-shadow: 0px 18px 30px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(255, 255, 255, 0.05);
+    border-radius: 16px; /* 65% of 25px */
+    box-shadow: 0px 19px 32px rgba(0, 0, 0, 0.6), inset 0 0 13px rgba(255, 255, 255, 0.05);
     text-align: center;
     position: relative;
     z-index: 1;
@@ -32,35 +32,35 @@ body {
 .slot-container {
     display: flex;
     justify-content: space-between;
-    gap: 6px; /* 40% less */
-    margin-bottom: 24px; /* 40% less */
+    gap: 6px; /* 65% of 10px */
+    margin-bottom: 26px; /* 65% of 40px */
     width: 100%;
     flex-wrap: nowrap;
 }
 
 /* Slot Column */
 .slot-column {
-    width: 84px; /* 40% less */
-    height: 270px; /* 40% less */
+    width: 91px; /* 65% of 140px */
+    height: 292px; /* 65% of 450px */
     overflow: hidden;
-    border: 2px solid #444; /* 40% less */
-    border-radius: 12px; /* 40% less */
+    border: 2px solid #444; /* 65% of 3px */
+    border-radius: 13px; /* 65% of 20px */
     background: linear-gradient(180deg, #2e2e2e, #1a1a1a);
     position: relative;
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.5), 0 3px 9px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 13px rgba(0, 0, 0, 0.5), 0 3px 10px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease;
 }
 
 .slot-column:hover {
-    transform: translateY(-6px); /* 40% less */
-    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.1), 0 9px 18px rgba(0, 0, 0, 0.5);
+    transform: translateY(-6px); /* 65% of -10px */
+    box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.1), 0 10px 19px rgba(0, 0, 0, 0.5);
 }
 
 /* Slot Item */
 .slot-item {
     width: 100%;
-    height: 54px; /* 40% less */
-    font-size: 1.5rem; /* 40% less */
+    height: 59px; /* 65% of 90px */
+    font-size: 1.625rem; /* 65% of 2.5rem */
     font-weight: bold;
     color: #f4d03f;
     display: flex;
@@ -73,8 +73,8 @@ body {
 }
 
 .slot-item:hover {
-    transform: scale(1.1); /* 40% less */
-    box-shadow: 0 6px 12px rgba(244, 208, 63, 0.7);
+    transform: scale(1.15);
+    box-shadow: 0 7px 13px rgba(244, 208, 63, 0.7);
     background: linear-gradient(145deg, #ffeaa7, #f4d03f);
     color: #000;
 }
@@ -84,31 +84,31 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 18px; /* 40% less */
+    margin-top: 20px; /* 65% of 30px */
     background: linear-gradient(145deg, #444, #222);
-    padding: 15px 21px; /* 40% less */
-    border-radius: 12px; /* 40% less */
-    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3), inset 0 0 6px rgba(255, 255, 255, 0.05);
+    padding: 16px 23px; /* 65% of 25px and 35px */
+    border-radius: 13px; /* 65% of 20px */
+    box-shadow: 0px 13px 26px rgba(0, 0, 0, 0.3), inset 0 0 6px rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease;
-    gap: 15px; /* 40% less */
+    gap: 16px; /* 65% of 25px */
 }
 
 .slot-controls:hover {
-    transform: translateY(-6px); /* 40% less */
-    box-shadow: 0px 18px 30px rgba(0, 0, 0, 0.4);
+    transform: translateY(-6px); /* 65% of -10px */
+    box-shadow: 0px 19px 32px rgba(0, 0, 0, 0.4);
 }
 
 /* Info Styling */
 .slot-controls .info {
-    font-size: 1.08rem; /* 40% less */
+    font-size: 1.17rem; /* 65% of 1.8rem */
     color: #f4d03f;
     font-weight: bold;
-    text-shadow: 1.2px 1.2px 2.4px rgba(0, 0, 0, 0.3);
+    text-shadow: 1.3px 1.3px 2.6px rgba(0, 0, 0, 0.3);
 }
 
 .slot-controls .info span {
     display: inline-block;
-    margin: 0 15px; /* 40% less */
+    margin: 0 16px; /* 65% of 25px */
 }
 
 .slot-controls .info span strong {
@@ -117,32 +117,32 @@ body {
 
 /* Start Button */
 .btn-danger {
-    font-size: 1rem; /* 40% less */
-    padding: 9px 24px; /* 40% less */
+    font-size: 1.04rem; /* 65% of 1.6rem */
+    padding: 9px 26px; /* 65% of 15px and 40px */
     background: linear-gradient(145deg, #e74c3c, #c0392b);
     color: white;
     border: none;
-    border-radius: 30px; /* 40% less */
+    border-radius: 33px; /* 65% of 50px */
     transition: all 0.3s ease;
-    box-shadow: 0px 6px 15px rgba(231, 76, 60, 0.5);
+    box-shadow: 0px 6px 16px rgba(231, 76, 60, 0.5);
 }
 
 .btn-danger:hover {
     background: linear-gradient(145deg, #ff6f61, #ff4c4c);
     transform: scale(1.1);
-    box-shadow: 0px 9px 18px rgba(231, 76, 60, 0.7);
+    box-shadow: 0px 10px 20px rgba(231, 76, 60, 0.7);
 }
 
 .btn-danger:focus {
     outline: none;
-    box-shadow: 0px 3px 12px rgba(231, 76, 60, 0.8);
+    box-shadow: 0px 3px 13px rgba(231, 76, 60, 0.8);
 }
 
 /* Spotlight Effect for Winning Items */
 .spotlight {
     animation: spotlight-animation 1.2s ease-in-out forwards;
-    border: 2px solid #FFD700; /* 40% less */
-    box-shadow: 0 0 12px 6px rgba(255, 215, 0, 0.8);
+    border: 2px solid #FFD700; /* 65% of 3px */
+    box-shadow: 0 0 13px 6px rgba(255, 215, 0, 0.8);
 }
 
 @keyframes spotlight-animation {
@@ -163,8 +163,8 @@ body {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .slot-wrapper {
-        padding: 15px;
-        max-width: 54%; /* 40% less */
+        padding: 16px; /* 65% of 25px */
+        max-width: 81%; /* 65% of 90% */
     }
 
     .slot-container {
@@ -173,8 +173,8 @@ body {
     }
 
     .slot-column {
-        width: 60px; /* 40% less */
-        height: 270px; /* 40% less */
+        width: 65px; /* 65% of 100px */
+        height: 292px; /* Maintain height for 5 rows */
     }
 
     .slot-controls {
@@ -184,14 +184,14 @@ body {
     }
 
     .btn-danger {
-        font-size: 1rem; /* 40% less */
-        padding: 7px 18px; /* 40% less */
+        font-size: 1.02rem; /* 65% of 1.4rem */
+        padding: 8px 19px; /* 65% of 12px and 30px */
     }
 }
 
 @media (max-width: 768px) {
     .slot-wrapper {
-        padding: 9px;
+        padding: 10px; /* 65% of 15px */
     }
 
     .slot-container {
@@ -201,43 +201,42 @@ body {
 
     .slot-column {
         width: calc(100% / 6); /* Maintain 6 columns */
-        height: 270px; /* 40% less */
-        border-radius: 9px; /* 40% less */
+        height: 292px; /* Maintain height for 5 rows */
+        border-radius: 10px; /* Adjust border-radius for smaller screens */
     }
 
     .slot-item {
-        font-size: 1.2rem; /* 40% less */
-        height: 54px; /* 40% less */
+        font-size: 1.3rem; /* 65% of 2rem */
+        height: 59px; /* Ensure consistent height */
     }
 
     .slot-controls {
-        padding: 12px 18px; /* 40% less */
+        padding: 13px 19px; /* 65% of 20px and 30px */
         flex-direction: column;
         align-items: center;
     }
 
     .btn-danger {
-        font-size: 0.8rem; /* 40% less */
-        padding: 6px 15px; /* 40% less */
+        font-size: 0.78rem; /* 65% of 1.2rem */
+        padding: 7px 16px; /* 65% of 10px and 25px */
     }
 }
 
 @media (max-width: 480px) {
     .slot-wrapper {
-        padding: 10px;
-        max-width: 90%;
-        max-height: 90%;
+        padding: 6px; /* 65% of 10px */
+        max-width: 65%; /* 65% of 100% */
     }
 
     .slot-column {
         width: calc(100% / 6); /* Maintain 6 columns */
-        height: 300px; /* Maintain height for 5 rows */
-        border-radius: 10px; /* Adjust border-radius for even smaller screens */
+        height: 195px; /* 65% of 300px */
+        border-radius: 6px; /* 65% of 10px */
     }
 
     .slot-item {
-        font-size: 1.8rem;
-        height: 60px; /* Ensure consistent height */
+        font-size: 1.17rem; /* 65% of 1.8rem */
+        height: 39px; /* 65% of 60px */
     }
 
     .slot-controls {
@@ -247,28 +246,11 @@ body {
     }
 
     .slot-controls .info {
-        font-size: 1.4rem; /* Reduce font size for info */
+        font-size: 0.91rem; /* 65% of 1.4rem */
     }
 
     .btn-danger {
-        font-size: 1rem; /* Make the button text smaller */
-        padding: 6px 15px; /* Smaller padding for the button */
+        font-size: 0.65rem; /* 65% of 1rem */
+        padding: 4px 10px; /* 65% of 6px and 15px */
     }
-}
-
-@keyframes slotSpin {
-    0% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-240px); /* 40% less */
-    }
-    100% {
-        transform: translateY(0);
-    }
-}
-
-.slot-items {
-    animation: slotSpin 1.2s ease-out infinite; /* 40% less */
-    transition: transform 1.2s ease-out;
 }
