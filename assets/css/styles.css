@@ -10,13 +10,12 @@ body {
 
 /* Slot Machine Wrapper */
 .slot-wrapper {
-    max-width: 944px; /* 110% of 858px */
-    max-height: 629px; /* 110% of 572px */
-    margin: 66px auto; /* 110% of 60px */
-    padding: 44px; /* 110% of 40px */
+    max-width: 1100px;
+    margin: 100px auto;
+    padding: 50px;
     background: linear-gradient(145deg, #2a2a2a, #3b3b3b);
-    border-radius: 22px; /* 110% of 20px */
-    box-shadow: 0px 25px 42px rgba(0, 0, 0, 0.6), inset 0 0 18px rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    box-shadow: 0px 30px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
     text-align: center;
     position: relative;
     z-index: 1;
@@ -32,35 +31,35 @@ body {
 .slot-container {
     display: flex;
     justify-content: space-between;
-    gap: 8px; /* 110% of 7px */
-    margin-bottom: 34px; /* 110% of 31px */
+    gap: 10px;
+    margin-bottom: 40px;
     width: 100%;
     flex-wrap: nowrap;
 }
 
 /* Slot Column */
 .slot-column {
-    width: 120px; /* 110% of 109px */
-    height: 385px; /* 110% of 350px */
+    width: 140px;
+    height: 450px; /* Ensure enough height for 5 items */
     overflow: hidden;
-    border: 2px solid #444; /* 110% of 4px */
-    border-radius: 18px; /* 110% of 16px */
+    border: 3px solid #444;
+    border-radius: 20px;
     background: linear-gradient(180deg, #2e2e2e, #1a1a1a);
     position: relative;
-    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.5), 0 5px 14px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.4s ease;
 }
 
 .slot-column:hover {
-    transform: translateY(-9px); /* 110% of -8px */
-    box-shadow: inset 0 0 22px rgba(255, 255, 255, 0.1), 0 13px 25px rgba(0, 0, 0, 0.5);
+    transform: translateY(-10px);
+    box-shadow: inset 0 0 25px rgba(255, 255, 255, 0.1), 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 /* Slot Item */
 .slot-item {
     width: 100%;
-    height: 78px; /* 110% of 71px */
-    font-size: 2.14rem; /* 110% of 1.95rem */
+    height: 90px; /* Ensure consistent height */
+    font-size: 2.5rem;
     font-weight: bold;
     color: #f4d03f;
     display: flex;
@@ -68,13 +67,13 @@ body {
     align-items: center;
     border-bottom: 1px solid #555;
     background: linear-gradient(145deg, #3a3a3a, #1f1f1f);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.4s ease-out, box-shadow 0.3s ease;
 }
 
 .slot-item:hover {
-    transform: scale(1.52); /* 110% of 1.38 */
-    box-shadow: 0 9px 18px rgba(244, 208, 63, 0.7);
+    transform: scale(1.15);
+    box-shadow: 0 10px 20px rgba(244, 208, 63, 0.7);
     background: linear-gradient(145deg, #ffeaa7, #f4d03f);
     color: #000;
 }
@@ -84,31 +83,31 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 27px; /* 110% of 24px */
+    margin-top: 30px;
     background: linear-gradient(145deg, #444, #222);
-    padding: 21px 31px; /* 110% of 19px and 28px */
-    border-radius: 18px; /* 110% of 16px */
-    box-shadow: 0px 18px 34px rgba(0, 0, 0, 0.3), inset 0 0 8px rgba(255, 255, 255, 0.05);
+    padding: 25px 35px;
+    border-radius: 20px;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease;
-    gap: 21px; /* 110% of 19px */
+    gap: 25px;
 }
 
 .slot-controls:hover {
-    transform: translateY(-10px); /* 110% of -9px */
-    box-shadow: 0px 25px 42px rgba(0, 0, 0, 0.4);
+    transform: translateY(-10px);
+    box-shadow: 0px 30px 50px rgba(0, 0, 0, 0.4);
 }
 
 /* Info Styling */
 .slot-controls .info {
-    font-size: 1.54rem; /* 110% of 1.4rem */
+    font-size: 1.8rem;
     color: #f4d03f;
     font-weight: bold;
-    text-shadow: 1.8px 1.8px 3.4px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .slot-controls .info span {
     display: inline-block;
-    margin: 21px; /* 110% of 19px */
+    margin: 0 25px;
 }
 
 .slot-controls .info span strong {
@@ -117,32 +116,32 @@ body {
 
 /* Start Button */
 .btn-danger {
-    font-size: 1.38rem; /* 110% of 1.25rem */
-    padding: 12px 34px; /* 110% of 11px and 31px */
+    font-size: 1.6rem;
+    padding: 15px 40px;
     background: linear-gradient(145deg, #e74c3c, #c0392b);
     color: white;
     border: none;
-    border-radius: 44px; /* 110% of 40px */
+    border-radius: 50px;
     transition: all 0.3s ease;
-    box-shadow: 0px 8px 21px rgba(231, 76, 60, 0.5);
+    box-shadow: 0px 10px 25px rgba(231, 76, 60, 0.5);
 }
 
 .btn-danger:hover {
     background: linear-gradient(145deg, #ff6f61, #ff4c4c);
-    transform: scale(1.45); /* 110% of 1.32 */
-    box-shadow: 0px 13px 26px rgba(231, 76, 60, 0.7);
+    transform: scale(1.1);
+    box-shadow: 0px 15px 30px rgba(231, 76, 60, 0.7);
 }
 
 .btn-danger:focus {
     outline: none;
-    box-shadow: 0px 5px 18px rgba(231, 76, 60, 0.8);
+    box-shadow: 0px 5px 20px rgba(231, 76, 60, 0.8);
 }
 
 /* Spotlight Effect for Winning Items */
 .spotlight {
     animation: spotlight-animation 1.2s ease-in-out forwards;
-    border: 5px solid #FFD700; /* 110% of 4px */
-    box-shadow: 0 0 18px 9px rgba(255, 215, 0, 0.8);
+    border: 3px solid #FFD700;
+    box-shadow: 0 0 20px 10px rgba(255, 215, 0, 0.8);
 }
 
 @keyframes spotlight-animation {
@@ -151,7 +150,7 @@ body {
         opacity: 1;
     }
     50% {
-        transform: scale(1.57); /* 110% of 1.44 */
+        transform: scale(1.2);
         opacity: 1;
     }
     100% {
@@ -163,18 +162,18 @@ body {
 /* Responsive Design */
 @media (max-width: 1024px) {
     .slot-wrapper {
-        padding: 23px; /* 110% of 21px */
-        max-width: 104%; /* 110% of 94% */
+        padding: 25px;
+        max-width: 90%;
     }
 
     .slot-container {
         flex-wrap: nowrap;
-        gap: 0;
+        gap: 0; /* Remove gaps */
     }
 
     .slot-column {
-        width: 132px; /* 110% of 120px */
-        height: 385px; /* Maintain height for 5 rows */
+        width: 100px;
+        height: 450px; /* Maintain height for 5 rows */
     }
 
     .slot-controls {
@@ -184,76 +183,77 @@ body {
     }
 
     .btn-danger {
-        font-size: 1.34rem; /* 110% of 1.22rem */
-        padding: 11px 25px; /* 110% of 10px and 23px */
+        font-size: 1.4rem;
+        padding: 12px 30px;
     }
 }
 
 @media (max-width: 768px) {
     .slot-wrapper {
-        padding: 14px; /* 110% of 12px */
+        padding: 15px;
     }
 
     .slot-container {
-        flex-wrap: nowrap;
-        gap: 0;
+        flex-wrap: nowrap; /* Ensure horizontal layout on smaller screens */
+        gap: 0; /* Ensure columns are tightly packed */
     }
 
     .slot-column {
-        width: calc(100% / 4); /* Adjust to 4 columns */
-        height: 385px; /* Maintain height for 5 rows */
-        border-radius: 13px; /* 110% of 12px */
+        width: calc(100% / 6); /* Dynamically adjust width for 6 columns */
+        height: 450px; /* Maintain height for 5 rows */
+        border-radius: 15px; /* Adjust border-radius for smaller screens */
     }
 
     .slot-item {
-        font-size: 1.72rem; /* 110% of 1.56rem */
-        height: 78px; /* Maintain consistent height */
+        font-size: 2rem;
+        height: 90px; /* Ensure consistent height */
     }
 
     .slot-controls {
-        padding: 18px 25px; /* 110% of 16px and 23px */
+        padding: 20px 30px;
         flex-direction: column;
         align-items: center;
     }
 
     .btn-danger {
-        font-size: 1.03rem; /* 110% of 0.94rem */
-        padding: 9px 19px; /* 110% of 8px and 17px */
+        font-size: 1.2rem;
+        padding: 10px 25px;
     }
 }
 
 @media (max-width: 480px) {
     .slot-wrapper {
-        padding: 8px; /* 110% of 7px */
-        max-width: 86%; /* 110% of 78% */
+        padding: 10px;
+        max-width: 100%;
     }
 
     .slot-column {
-        width: calc(100% / 4); /* Adjust to 4 columns */
-        height: 259px; /* 110% of 234px */
-        border-radius: 8px; /* 110% of 7px */
+        width: calc(100% / 6); /* Maintain 6 columns */
+        height: 300px; /* Maintain height for 5 rows */
+        border-radius: 10px; /* Adjust border-radius for even smaller screens */
     }
 
     .slot-item {
-        font-size: 1.54rem; /* 110% of 1.4rem */
-        height: 51px; /* 110% of 47px */
+        font-size: 1.8rem;
+        height: 60px; /* Ensure consistent height */
     }
 
     .slot-controls {
-        gap: 0px;
-        flex-direction: column;
-        align-items: center;
+        gap: 0px; /* Reduce gap between elements */
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center-align controls */
     }
 
     .slot-controls .info {
-        font-size: 1.21rem; /* 110% of 1.1rem */
+        font-size: 1.4rem; /* Reduce font size for info */
     }
 
     .btn-danger {
-        font-size: 0.86rem; /* 110% of 0.78rem */
-        padding: 6px 14px; /* 110% of 5px and 12px */
+        font-size: 1rem; /* Make the button text smaller */
+        padding: 6px 15px; /* Smaller padding for the button */
     }
 }
+
 
 @keyframes slotSpin {
     0% {
