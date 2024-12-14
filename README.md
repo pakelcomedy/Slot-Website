@@ -1,3 +1,5 @@
+---
+
 # Slot Game
 
 ## Description
@@ -30,8 +32,6 @@ Slot-Website/
 │   │   └── styles.css       # Main CSS file for styling the game
 │   ├── js/                  # JavaScript files for the game logic
 │   │   └── scripts.js       # Main JavaScript file for the game functionality
-│   ├── img/                 # Images used in the game (icons, backgrounds, etc.)
-│   │   └── (image files)    # Store your image files here (e.g., logo.png, background.jpg)
 └── README.md                # Documentation for the project
 ```
 
@@ -67,6 +67,10 @@ You can adjust the following settings to modify the game behavior:
 - **Paylines**: You can customize the winning patterns by modifying the `paylines` array.
 - **Bet Amount**: Adjust the `betAmount` variable to change the cost per spin.
 
+## Website
+
+Visit the game online at: [www.slot.my.id](http://www.slot.my.id)
+
 ## Contributing
 
 If you'd like to contribute to the project:
@@ -80,3 +84,5 @@ If you'd like to contribute to the project:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
