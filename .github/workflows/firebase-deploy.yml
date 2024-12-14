@@ -1,12 +1,12 @@
-name: Build and Deploy to GitHub Pages
+name: Deploy to Firebase Hosting
 
 on:
   push:
     branches:
-      - main  # Ganti dengan nama branch Anda
+      - main  # Ganti dengan branch yang sesuai, misalnya `main` atau `production`
 
 jobs:
-  deploy:
+  deploy-to-firebase:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,12 +16,12 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'  # Versi Node.js yang sesuai
+        node-version: '14'  # Sesuaikan dengan versi Node.js yang digunakan
 
     - name: Install dependencies
       run: npm install
 
-    - name: Deploy to GitHub Pages
-      run: |
-        npm run deploy  # Jika ada skrip untuk deploy, pastikan ini ada di package.json
-        # Atau Anda bisa menambahkan langkah untuk meng-copy file statis ke folder yang benar
+    - name: Firebase deploy
+      uses: wzieba/Firebase-Action@v2
+      with:
+        firebase_token: ${{ secrets.FIREBASE_TOKEN }}
