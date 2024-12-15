@@ -69,7 +69,7 @@ You can adjust the following settings to modify the game behavior:
 
 ## Website
 
-Visit the game online at: [www.slot.my.id](http://www.slot.my.id)
+Visit the game online at: [www.slot.my.id](http://www.slot.my.id) blocked by komdigi
 
 ## Contributing
 
